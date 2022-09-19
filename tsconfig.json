@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.alias.json",
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "sourceMap": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["public", "node_modules"]
+}
