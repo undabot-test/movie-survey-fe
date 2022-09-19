@@ -30,6 +30,9 @@ module.exports = {
     'no-console': 'warn',
   },
   settings: {
+    'import/resolver': {
+      typescript: {},
+    },
     react: {
       version: 'detect',
     },
