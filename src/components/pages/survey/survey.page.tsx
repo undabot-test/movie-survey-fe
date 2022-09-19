@@ -1,5 +1,16 @@
+import { useEffect, useState } from 'react'
+import { observer } from 'mobx-react-lite'
+import { surveyService } from '@services/survey'
+
 const Survey = () => {
-  return <div>survey</div>
+  const { survey$ } = surveyService
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    surveyService.getSurvey().finally(() => setLoading(false))
+  }, [])
+
+  return <div>{survey$?.attributes.title}</div>
 }
 
-export default Survey
+export default observer(Survey)

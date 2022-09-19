@@ -6,9 +6,15 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const tsconfigAlias = require('./tsconfig.alias.json')
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: {
+    worker: './service-worker/index.ts',
+    app: {
+      import: './src/index.tsx',
+      dependOn: 'worker',
+    },
+  },
   plugins: [
-    new EnvironmentPlugin(['PORT']),
+    new EnvironmentPlugin(['PORT', 'SURVEY_API']),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
@@ -24,7 +30,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        include: resolve(__dirname, 'src'),
+        include: [resolve(__dirname, 'src'), resolve(__dirname, 'service-worker')],
         exclude: /node_modules/,
       },
       {
