@@ -1,3 +1,8 @@
+## Movie Survey
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f9f98b6a-7d2a-422b-8422-a1d53321e37f/deploy-status?branch=master)](https://app.netlify.com/sites/movie-survey/deploys)
+
+Deploy preview is available here: https://movie-survey.netlify.app/
+
 ## Local Environment
 
 These variables are recommended for local development:
