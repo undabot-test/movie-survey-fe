@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { CircularProgress, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { surveyService } from '@services/survey'
+import { PageLoader } from '@atoms/page-loader'
 import { SurveyForm } from '@organisms/survey-form'
 import * as Styled from './survey.styles'
 
@@ -14,7 +15,7 @@ const Survey = () => {
   }, [])
 
   if (loading) {
-    return <CircularProgress />
+    return <PageLoader />
   }
 
   return (
