@@ -1,6 +1,6 @@
 import { QuestionTypes } from '@constants/question-types.constant'
 
-export interface Question {
+export interface IQuestion {
   questionId: string
   questionType: QuestionTypes
   label: string

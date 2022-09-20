@@ -1,6 +1,8 @@
 import { makeObservable, observable, action } from 'mobx'
-import { Survey } from '@interfaces/survey.interface'
+import { ISurvey } from '@interfaces/survey.interface'
+import { questionsService } from '@services/questions'
 import { makeRequest } from '@helpers/make-request.helper'
+import { GetSurveyResult, Survey } from './survey.types'
 
 class SurveyService {
   survey$: null | Survey = null
@@ -12,13 +14,15 @@ class SurveyService {
     })
   }
 
-  setSurvey = (survey: Survey) => {
-    this.survey$ = survey
+  setSurvey = ({ id, attributes }: ISurvey) => {
+    const { title, description, questions } = attributes
+    this.survey$ = { id, title, description }
+    questionsService.setQuestions(questions)
   }
 
   getSurvey = () => {
-    return makeRequest<Survey>({
-      url: 'api/v1/survey',
+    return makeRequest<GetSurveyResult>({
+      url: 'survey',
       method: 'GET',
     }).then(this.setSurvey)
   }

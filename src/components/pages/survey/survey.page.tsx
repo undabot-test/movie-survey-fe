@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { CircularProgress, Typography } from '@mui/material'
 import { surveyService } from '@services/survey'
 import { SurveyForm } from '@organisms/survey-form'
+import * as Styled from './survey.styles'
 
 const Survey = () => {
   const { survey$ } = surveyService
@@ -17,14 +18,15 @@ const Survey = () => {
   }
 
   return (
-    <div>
-      <Typography variant="h2">{survey$?.attributes.title}</Typography>
+    <Styled.Survey>
+      <Typography variant="h2">{survey$?.title}</Typography>
       <Typography
         variant="body1"
-        dangerouslySetInnerHTML={{ __html: survey$?.attributes.description || '' }}
+        dangerouslySetInnerHTML={{ __html: survey$?.description || '' }}
+        sx={{ mb: 5 }}
       />
       <SurveyForm />
-    </div>
+    </Styled.Survey>
   )
 }
 
