@@ -18,8 +18,8 @@ const Success = () => {
       <Typography variant="h2" align="center">
         Thank you!
       </Typography>
-      <Typography variant="body1" align="center" sx={{ mb: 5 }}>
-        <p>Preview of questions and answers.</p>
+      <Typography variant="body1" align="center" sx={{ mt: 2, mb: 5 }}>
+        Preview of questions and answers.
       </Typography>
       {answers$.map(({ questionId, question, answer }) => (
         <Answer key={questionId} question={question} answer={answer} />
