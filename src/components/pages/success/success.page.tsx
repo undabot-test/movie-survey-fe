@@ -14,15 +14,17 @@ const Success = () => {
   }
 
   return (
-    <Styled.Success>
-      <Typography variant="h2">Thank you!</Typography>
-      <Typography variant="body1" sx={{ mb: 5 }}>
-        Preview of questions and answers.
+    <Styled.Page maxWidth="sm">
+      <Typography variant="h2" align="center">
+        Thank you!
+      </Typography>
+      <Typography variant="body1" align="center" sx={{ mb: 5 }}>
+        <p>Preview of questions and answers.</p>
       </Typography>
       {answers$.map(({ questionId, question, answer }) => (
         <Answer key={questionId} question={question} answer={answer} />
       ))}
-    </Styled.Success>
+    </Styled.Page>
   )
 }
 

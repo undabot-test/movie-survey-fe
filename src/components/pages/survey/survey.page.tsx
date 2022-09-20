@@ -18,15 +18,18 @@ const Survey = () => {
   }
 
   return (
-    <Styled.Survey>
-      <Typography variant="h2">{survey$?.title}</Typography>
+    <Styled.Page maxWidth="sm">
+      <Typography variant="h2" align="center">
+        {survey$?.title}
+      </Typography>
       <Typography
         variant="body1"
+        align="center"
         dangerouslySetInnerHTML={{ __html: survey$?.description || '' }}
         sx={{ mb: 5 }}
       />
       <SurveyForm />
-    </Styled.Survey>
+    </Styled.Page>
   )
 }
 

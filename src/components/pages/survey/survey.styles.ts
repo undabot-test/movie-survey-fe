@@ -1,9 +1,6 @@
-import { styled } from '@mui/material'
+import { Container, styled } from '@mui/material'
 
-export const Survey = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  marginTop: 32,
-  marginBottom: 32,
+export const Page = styled(Container)({
+  marginTop: 64,
+  marginBottom: 64,
 })

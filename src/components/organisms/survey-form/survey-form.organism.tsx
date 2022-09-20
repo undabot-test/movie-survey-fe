@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 import { useForm, FormProvider } from 'react-hook-form'
-import { Button } from '@mui/material'
 import { surveyService } from '@services/survey'
 import { questionsService } from '@services/questions'
 import { answersService } from '@services/answers'
@@ -10,6 +9,7 @@ import { getDefaultValues } from '@helpers/get-default-values.helper'
 import { AppRoutes } from '@constants/app-routes.constant'
 import { Question } from '@molecules/question'
 import { SurveyFormValues } from './survey-form.types'
+import * as Styled from './survey-form.styles'
 
 const SurveyForm = () => {
   const { questions$ } = questionsService
@@ -43,7 +43,7 @@ const SurveyForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <Styled.Form onSubmit={methods.handleSubmit(onSubmit)}>
         {questions$.map(({ id, question, type, required }, index) => (
           <Question
             key={id}
@@ -54,10 +54,10 @@ const SurveyForm = () => {
             required={required}
           />
         ))}
-        <Button variant="contained" color="primary" type="submit" sx={{ mt: 2 }} disabled={loading}>
+        <Styled.Submit variant="contained" color="primary" type="submit" disabled={loading}>
           Submit
-        </Button>
-      </form>
+        </Styled.Submit>
+      </Styled.Form>
     </FormProvider>
   )
 }
