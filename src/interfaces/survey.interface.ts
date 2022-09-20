@@ -1,10 +1,10 @@
-import { Question } from './question.interface'
+import { IQuestion } from './question.interface'
 
-export interface Survey {
+export interface ISurvey {
   id: string
   attributes: {
     title: string
     description: string
-    questions: Question[]
+    questions: IQuestion[]
   }
 }

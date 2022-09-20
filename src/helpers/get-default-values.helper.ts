@@ -1,10 +1,10 @@
-import { surveyService } from '@services/survey'
 import { SurveyFormValues } from '@organisms/survey-form/survey-form.types'
+import { questionsService } from '@services/questions'
 
 export const getDefaultValues = () => {
-  const { survey$ } = surveyService
-  return survey$?.attributes.questions.reduce((acc, cur) => {
-    acc[cur.questionId] = ''
+  const { questions$ } = questionsService
+  return questions$.reduce((acc, cur) => {
+    acc[cur.id] = ''
     return acc
   }, {} as SurveyFormValues)
 }
