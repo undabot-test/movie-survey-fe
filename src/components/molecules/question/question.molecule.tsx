@@ -19,7 +19,12 @@ const Question = ({ index, name, type, question, required }: QuestionProps) => {
       switch (type) {
         case QuestionTypes.Text: {
           return (
-            <TextField {...field} error={!!error} helperText={error && 'This field is required'} />
+            <TextField
+              {...field}
+              error={!!error}
+              helperText={error && 'This field is required'}
+              sx={{ width: '100%' }}
+            />
           )
         }
         case QuestionTypes.Rating: {
