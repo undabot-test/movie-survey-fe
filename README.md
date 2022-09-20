@@ -3,6 +3,14 @@
 
 Deploy preview is available here: https://movie-survey.netlify.app/
 
+## Project Structure
+
+The project structure is an adaptation of the [angular structure](https://angular.io/guide/file-structure) and [atomic design ideas](https://atomicdesign.bradfrost.com/chapter-2/) to the realities of react.\
+To put it simple, all view components are in the /components folder. Data & logic layer, API requests can be found in the /services folder.\
+Сomponents can be divided into several groups, the main ones are: /atoms, /molecules, /organisms, /templates, /pages.\
+\
+At the moment, network requests are simulated by the service worker.
+
 ## Local Environment
 
 These variables are recommended for local development:
