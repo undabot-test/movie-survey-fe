@@ -6,7 +6,7 @@ module.exports = merge(config, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    filename: '[name].[contenthash:8].js',
+    filename: '[name].js',
     path: resolve(__dirname, './dist'),
     publicPath: '/',
     clean: true,
