@@ -4,6 +4,8 @@
     "paths": {
       "@constants/*": ["src/constants/*"],
       "@services/*": ["src/services/*"],
+      "@molecules/*": ["src/components/molecules/*"],
+      "@organisms/*": ["src/components/organisms/*"],
       "@pages/*": ["src/components/pages/*"],
       "@interfaces/*": ["src/interfaces/*"],
       "@helpers/*": ["src/helpers/*"]
