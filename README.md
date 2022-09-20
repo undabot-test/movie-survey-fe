@@ -23,6 +23,10 @@ PORT=3000
 
 In the project directory, you can run:
 
+### `yarn install`
+
+Installs project dependencies.
+
 ### `yarn watch`
 
 Runs the app in the development mode.\
