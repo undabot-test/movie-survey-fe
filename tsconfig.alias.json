@@ -4,7 +4,12 @@
     "paths": {
       "@constants/*": ["src/constants/*"],
       "@services/*": ["src/services/*"],
-      "@pages/*": ["src/components/pages/*"]
+      "@atoms/*": ["src/components/atoms/*"],
+      "@molecules/*": ["src/components/molecules/*"],
+      "@organisms/*": ["src/components/organisms/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   }
 }
