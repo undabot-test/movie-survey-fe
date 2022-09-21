@@ -17,6 +17,7 @@ These variables are recommended for local development:
 
 ```
 PORT=3000
+SURVEY_API=http://localhost:4000/api/v1/
 ```
 
 ## Available Scripts
