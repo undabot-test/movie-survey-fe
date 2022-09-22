@@ -13,12 +13,15 @@ class QuestionsService {
   }
 
   setQuestions = (questions: IQuestion[]) => {
-    this.questions$ = questions.map(({ questionId, questionType, label, required }) => ({
-      id: questionId,
-      type: questionType,
-      question: label,
-      required,
-    }))
+    this.questions$ = questions.map(
+      ({ questionId, questionType, label, required, attributes }) => ({
+        id: questionId,
+        type: questionType,
+        question: label,
+        required,
+        attributes,
+      })
+    )
   }
 }
 

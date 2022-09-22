@@ -48,7 +48,7 @@ const SurveyForm = () => {
         <Typography variant="body1">Sorry, there are no questions in this survey.</Typography>
       )}
       <Styled.Form onSubmit={methods.handleSubmit(onSubmit)}>
-        {questions$.map(({ id, question, type, required }, index) => (
+        {questions$.map(({ id, question, type, required, attributes }, index) => (
           <Question
             key={id}
             index={index + 1}
@@ -56,6 +56,7 @@ const SurveyForm = () => {
             question={question}
             type={type}
             required={required}
+            attributes={attributes}
           />
         ))}
         <Styled.Submit
