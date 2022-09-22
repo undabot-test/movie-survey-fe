@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useNavigate } from 'react-router-dom'
 import { useForm, FormProvider } from 'react-hook-form'
+import { Typography } from '@mui/material'
 import { surveyService } from '@services/survey'
 import { questionsService } from '@services/questions'
 import { answersService } from '@services/answers'
@@ -43,6 +44,9 @@ const SurveyForm = () => {
 
   return (
     <FormProvider {...methods}>
+      {!questions$.length && (
+        <Typography variant="body1">Sorry, there are no questions in this survey.</Typography>
+      )}
       <Styled.Form onSubmit={methods.handleSubmit(onSubmit)}>
         {questions$.map(({ id, question, type, required }, index) => (
           <Question
@@ -54,7 +58,12 @@ const SurveyForm = () => {
             required={required}
           />
         ))}
-        <Styled.Submit variant="contained" color="primary" type="submit" disabled={loading}>
+        <Styled.Submit
+          variant="contained"
+          color="primary"
+          type="submit"
+          disabled={loading || !questions$.length}
+        >
           Submit
         </Styled.Submit>
       </Styled.Form>
