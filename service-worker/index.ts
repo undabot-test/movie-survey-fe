@@ -4,7 +4,7 @@ declare const self: ServiceWorkerGlobalScope
 import GET_SURVEY from './get-survey.json'
 import GET_ANSWERS from './get-answers.json'
 
-const version = 'v1.0.3'
+const version = 'v1.0.4'
 
 self.oninstall = () => {
   console.log('installed', version)
@@ -20,7 +20,7 @@ self.onfetch = (event) => {
   // if (method === 'GET' && /survey$/.test(url)) {
   //   return event.respondWith(new Response(JSON.stringify(GET_SURVEY)))
   // }
-  if (method === 'POST' && /answers$/.test(url)) {
-    return event.respondWith(new Response(JSON.stringify(GET_ANSWERS)))
-  }
+  // if (method === 'POST' && /answers$/.test(url)) {
+  //   return event.respondWith(new Response(JSON.stringify(GET_ANSWERS)))
+  // }
 }
