@@ -1,45 +1,46 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import { TextField, Typography } from '@mui/material'
+import { RatingField } from '@molecules/rating-field'
 import { QuestionTypes } from '@constants/question-types.constant'
-import { RatingField } from '../rating-field'
+import { getErrorProps } from '@helpers/get-error-props.helper'
 import { QuestionProps, RenderInputVariables } from './question.types'
 import * as Styled from './question.styles'
+import { FIELD_VALIDATIONS } from './question.data'
 
-const Question = ({ index, name, type, question, required }: QuestionProps) => {
+const Question = ({ index, name, type, question, required, attributes }: QuestionProps) => {
   const {
     control,
     formState: { errors },
   } = useFormContext()
 
-  const renderInput = useCallback(
+  const rules = useMemo(() => {
+    const validateField = FIELD_VALIDATIONS[type]
+    return {
+      required: required && 'This field is required.',
+      validate: validateField && validateField(attributes),
+    }
+  }, [type, required, attributes])
+
+  const render = useCallback(
     ({ field }: RenderInputVariables) => {
-      const error = errors[name]
+      const error = getErrorProps(errors[name])
 
       switch (type) {
         case QuestionTypes.Text: {
-          return (
-            <TextField
-              {...field}
-              error={!!error}
-              helperText={error && 'This field is required'}
-              sx={{ width: '100%' }}
-            />
-          )
+          return <TextField {...field} {...error} />
         }
         case QuestionTypes.Rating: {
           return (
-            <RatingField
-              {...field}
-              value={Number(field.value)}
-              error={!!error}
-              helperText="Please provide the rating"
-            />
+            <RatingField {...field} {...error} value={Number(field.value)} max={attributes?.max} />
           )
+        }
+        default: {
+          return <TextField {...field} />
         }
       }
     },
-    [type, name, errors]
+    [type, name, attributes, errors]
   )
 
   return (
@@ -47,7 +48,7 @@ const Question = ({ index, name, type, question, required }: QuestionProps) => {
       <Typography variant="body1" sx={{ mb: 1 }}>
         {index}. {question}
       </Typography>
-      <Controller name={name} control={control} rules={{ required }} render={renderInput} />
+      <Controller name={name} control={control} rules={rules} render={render} />
     </Styled.Question>
   )
 }
