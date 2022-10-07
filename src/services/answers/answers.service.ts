@@ -2,21 +2,24 @@ import { action, makeObservable, observable } from 'mobx'
 import { makeRequest } from '@helpers/make-request.helper'
 import { IAnswer } from '@interfaces/answer.interface'
 import { questionsService } from '@services/questions'
-import { SubmitSurveyVariables, SubmitSurveyResult, Answer } from './answers.types'
+import { IQuestionsService } from '@services/questions/questions.types'
+import { SubmitSurveyVariables, SubmitSurveyResult, Answer, IAnswersService } from './answers.types'
 
-class AnswersService {
+class AnswersService implements IAnswersService {
   answers$: Answer[] = []
 
-  constructor() {
-    makeObservable(this, {
+  constructor(private readonly questionsService: IQuestionsService) {
+    makeObservable<AnswersService, 'setAnswers'>(this, {
       answers$: observable,
       setAnswers: action,
     })
   }
 
-  setAnswers = (answers: IAnswer[]) => {
+  private setAnswers = (answers: IAnswer[]) => {
     this.answers$ = answers.map(({ questionId, answer }) => {
-      const question = questionsService.questions$.find((question) => question.id === questionId)
+      const question = this.questionsService.questions$.find(
+        (question) => question.id === questionId
+      )
       return {
         questionId,
         question: question?.question || '',
@@ -36,4 +39,4 @@ class AnswersService {
   }
 }
 
-export const answersService = new AnswersService()
+export const answersService = new AnswersService(questionsService)

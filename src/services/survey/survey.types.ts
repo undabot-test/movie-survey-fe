@@ -7,3 +7,8 @@ export type Survey = {
 }
 
 export type GetSurveyResult = ISurvey
+
+export interface ISurveyService {
+  survey$: Survey | null
+  getSurvey: () => Promise<void>
+}

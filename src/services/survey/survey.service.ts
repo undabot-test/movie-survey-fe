@@ -1,23 +1,24 @@
 import { makeObservable, observable, action } from 'mobx'
 import { ISurvey } from '@interfaces/survey.interface'
 import { questionsService } from '@services/questions'
+import { IQuestionsService } from '@services/questions/questions.types'
 import { makeRequest } from '@helpers/make-request.helper'
-import { GetSurveyResult, Survey } from './survey.types'
+import { GetSurveyResult, ISurveyService, Survey } from './survey.types'
 
-class SurveyService {
+class SurveyService implements ISurveyService {
   survey$: null | Survey = null
 
-  constructor() {
-    makeObservable(this, {
+  constructor(private readonly questionsService: IQuestionsService) {
+    makeObservable<SurveyService, 'setSurvey'>(this, {
       survey$: observable,
       setSurvey: action,
     })
   }
 
-  setSurvey = ({ id, attributes }: ISurvey) => {
+  private setSurvey = ({ id, attributes }: ISurvey) => {
     const { title, description, questions } = attributes
     this.survey$ = { id, title, description }
-    questionsService.setQuestions(questions)
+    this.questionsService.setQuestions(questions)
   }
 
   getSurvey = () => {
@@ -28,4 +29,4 @@ class SurveyService {
   }
 }
 
-export const surveyService = new SurveyService()
+export const surveyService = new SurveyService(questionsService)

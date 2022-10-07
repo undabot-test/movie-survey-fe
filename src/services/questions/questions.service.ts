@@ -1,8 +1,8 @@
 import { action, makeObservable, observable } from 'mobx'
 import { IQuestion } from '@interfaces/question.interface'
-import { Question } from './questions.types'
+import { IQuestionsService, Question } from './questions.types'
 
-class QuestionsService {
+class QuestionsService implements IQuestionsService {
   questions$: Question[] = []
 
   constructor() {

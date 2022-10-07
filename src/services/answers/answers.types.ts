@@ -22,3 +22,8 @@ export type SubmitSurveyResult = {
     answers: IAnswer[]
   }
 }
+
+export interface IAnswersService {
+  answers$: Answer[]
+  getAnswers: (variables: SubmitSurveyVariables) => Promise<void>
+}

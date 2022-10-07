@@ -1,5 +1,5 @@
 import { QuestionTypes } from '@constants/question-types.constant'
-import { QuestionAttributes } from '@interfaces/question.interface'
+import { IQuestion, QuestionAttributes } from '@interfaces/question.interface'
 
 export type Question = {
   id: string
@@ -7,4 +7,9 @@ export type Question = {
   type: QuestionTypes
   required: boolean
   attributes: QuestionAttributes
+}
+
+export interface IQuestionsService {
+  questions$: Question[]
+  setQuestions: (questions: IQuestion[]) => void
 }
