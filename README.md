@@ -36,3 +36,7 @@ Open [http://localhost:3000/](http://[::1]:3000/) to access application.
 ### `yarn build`
 
 Builds the app for production to the `dist` folder.
+
+### `serve dist`
+
+Helps you serve a static site from a dist folder. Use `npm install --global serve` and `yarn build` in advance.
